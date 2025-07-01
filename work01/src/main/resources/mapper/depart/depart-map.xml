@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yedam.app.depart.mapper.DepartMapper">
+	<!-- Interface의 메서드를 통해 실행한 쿼리 정의 -->
+	<select id="selectAll" resultType="DepartVO">
+		SELECT   department_id,
+		         department_name,
+		         manager_id,
+		         location_id
+		FROM     departments
+		ORDER BY department_id
+	</select>
+	
+	<select id="selectInfo" parameterType="DepartVO" resultType="DepartVO">
+		SELECT   department_id,
+		         department_name,
+		         manager_id,
+		         location_id
+		FROM     departments
+		WHERE    department_id = #{departmentId}
+	</select>
+	
+	<insert id="insertInfo" parameterType="DepartVO">
+		<!-- selectKey => parameterType -->
+		<selectKey keyProperty="departmentId"
+				   resultType="Integer"
+				   order="BEFORE">
+			SELECT NVL(MAX(department_id), 100) + 1
+			FROM departments
+		</selectKey>
+		INSERT INTO departments
+				(
+					   department_id
+			         , department_name
+			         , manager_id
+			         , location_id
+				)
+		VALUES (
+			           #{departmentId}
+			         , #{departmentName}
+			         , #{managerId}
+			         , #{locationId}
+				)
+	</insert>
+</mapper>
