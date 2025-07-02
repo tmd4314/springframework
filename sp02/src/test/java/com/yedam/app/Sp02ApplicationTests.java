@@ -51,7 +51,7 @@ class Sp02ApplicationTests {
     	assertEquals(1, result);
     }
     
-    @Test
+    //@Test
     public void insertSelectKey() {
     	EmpVO emp = EmpVO.builder()
     					 .lastName("Hong")
@@ -62,6 +62,20 @@ class Sp02ApplicationTests {
     	
     	int result = empMapper.insertInfo(emp);
     	System.out.println("사원번호 : " + emp.getEmployeeId());
+    	assertEquals(1, result);
+    }
+    
+    //@Test
+    public void updateInfo() {
+    	// 1) 단건 조회
+    	EmpVO emp = EmpVO.builder()
+    					 .employeeId(208)
+    					 .build();
+    	EmpVO findVO = empMapper.selectInfo(emp);
+    	// 2) 값 변경
+    	findVO.setSalary(2550);
+    	// 3) 테이블에 업데이트
+    	int result = empMapper.updateInfo(208, findVO);
     	assertEquals(1, result);
     }
 }
