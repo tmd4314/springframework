@@ -38,7 +38,7 @@ public class EmpController {
 		// 2-1) View에 전달할 데이터 담기
 		model.addAttribute("emps", list);
 		// 3) 응답 형태
-		return "emp.list";
+		return "emp/list";
 		//classpath:/template/emp/list.html
 		//prefix              return   suffix
 	}
