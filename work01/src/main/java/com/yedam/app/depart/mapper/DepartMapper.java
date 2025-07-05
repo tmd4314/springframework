@@ -2,6 +2,8 @@ package com.yedam.app.depart.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.yedam.app.depart.service.DepartVO;
 
 public interface DepartMapper {
@@ -13,6 +15,12 @@ public interface DepartMapper {
 	
 	// 등록
 	public int insertInfo(DepartVO departVO);
+	
+	//수정
+	public int updateInfo(@Param("id")int departId, @Param("info")DepartVO departVO);
+	
+	//삭제
+	public int deleteInfo(int department_id);
 	
 	
 }
