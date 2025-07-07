@@ -43,7 +43,7 @@ public class EmpController {
 		//prefix              return   suffix
 	}
 	
-	// 단건조회 : GET => QueryString
+	// 단건조회 : GET => QueryString | empInfo?employeeId=100
 	@GetMapping("empInfo")
 	public String empInfo(EmpVO empVO, Model model) {
 		EmpVO findVO = empService.findInfoById(empVO);
@@ -52,9 +52,10 @@ public class EmpController {
 	}
 	
 	// 등록 - 페이지 : GET 
-	@GetMapping("empinsert")
+	@GetMapping("empInsert")
 	public String empInsertForm() {
 		return "emp/insert";
+		// classpath:/template/emp/insert.html
 	}
 	
 	// 등록 - 처리  : POST(AJAX 사용 안함 중복 저장되서) => <form/> submint / QuertString 
@@ -64,7 +65,7 @@ public class EmpController {
 		String url = null;
 		if(eid > -1) {
 			//정상적으로 등록
-			url = "redirect:empinfo?employeeId=" + eid;
+			url = "redirect:empInfo?employeeId=" + eid;
 		}else {
 			// 등록되지 않은 경우
 			url = "redirect:empList";
@@ -81,7 +82,7 @@ public class EmpController {
 	}
 	
 	// 수정 - 처리   : POST + AJAX + JSON
-	@PostMapping("emUpdate")
+	@PostMapping("empUpdate")
 	@ResponseBody // AJAX=> model 사용하지 않음 		//JSON
 	public Map<String, Object> empUpdateProcess(@RequestBody EmpVO empVO) {
 		return empService.modifyInfo(empVO);
