@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<div class="container" th:fragment="HeaderFrag">
+	<nav class="nav">
+	  <a class="nav-link active" aria-current="page" th:href="@{/boardList}">전체조회</a>
+	  <a class="nav-link" th:href="@{/boardInsert}">등록</a>
+	  <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+	</nav>
+</div>
+</html>
